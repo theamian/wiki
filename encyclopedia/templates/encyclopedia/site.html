@@ -1,0 +1,17 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {% if not content %}
+        Error
+    {% else %}
+        {{ site }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if not content %}
+        <div>Requested page could not be found. Check the spelling and the capitalization.</div>
+    {% else %}
+        {{ content | safe }}
+    {% endif %}        
+{% endblock %}
