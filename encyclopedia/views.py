@@ -11,7 +11,6 @@ def index(request):
 
 def site(request, site):
     content = markdown2.markdown(util.get_entry(site))
-    print(type(content))
     return render(request, "encyclopedia/site.html", {
         "site": site,
         "content": content
