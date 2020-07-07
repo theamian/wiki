@@ -1,0 +1,17 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block body %}
+    {% if newList|length < 1%}
+        <div>The search didn't yield any results</div>
+    {% else %}
+        <ul>
+        {% for item in newList %}
+            <li><a href="{% url 'site' item %}">{{ item }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
