@@ -44,4 +44,18 @@ def search(request):
         })
 
 def create(request):
+    if request.method == "GET":
+        return render(request, "encyclopedia/create.html")
+    
+    title = request.POST["title"]
+    content = request.POST["pgContent"]
+
+    if util.get_entry(title):
+        return render(request, "encyclopedia/create.html", {
+            "error": "An entry with the same title already exists, please try again"
+        })
+
+    
+        
     return render(request, "encyclopedia/create.html")
+    
