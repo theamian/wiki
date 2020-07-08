@@ -55,7 +55,6 @@ def create(request):
             "error": "An entry with the same title already exists, please try again"
         })
 
-    
-        
-    return render(request, "encyclopedia/create.html")
-    
+    util.save_entry(title, content)
+
+    return HttpResponseRedirect(reverse("site", kwargs={"site": title}))    
