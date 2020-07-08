@@ -15,9 +15,7 @@ def index(request):
 
 def site(request, site):
     if util.get_entry(site):
-        print(util.get_entry(site))  
         content = markdown2.markdown(util.get_entry(site))
-        print(content)
     else:
         content = None
     return render(request, "encyclopedia/site.html", {
@@ -34,7 +32,6 @@ def search(request):
 
     else:
         newList = []
-        print(f"newList je {newList}")
         for entry in entryList:
             if query.lower() in entry.lower():
                 newList.append(entry)
