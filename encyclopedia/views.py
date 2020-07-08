@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 import markdown2
+import random
 
 from . import util
 
@@ -69,5 +70,10 @@ def edit(request, site):
     
     newContent = request.POST["newContent"]
     util.save_entry(site, newContent)
+
+    return HttpResponseRedirect(reverse("site", kwargs={"site": site}))
+
+def rand(request):
+    site = random.choice(util.list_entries())
 
     return HttpResponseRedirect(reverse("site", kwargs={"site": site}))
