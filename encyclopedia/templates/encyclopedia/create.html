@@ -1,0 +1,18 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create New Page
+{% endblock %}
+
+{% block body %}
+    <h1>Create a new page</h1>
+    <div>
+        <form>
+            <label for="title">Title:</label><br>
+            <input type="text" name="title" placeholder="Title"><br><br>
+            <label for="pgContent">Page Content:</label><br>
+            <textarea id="pgContent" name="pgContent" placeholder="Enter Page Markdown Content Here"></textarea><br>
+            <input type="submit" value="Save!">
+        </form>
+    </div>
+{% endblock %}
