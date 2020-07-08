@@ -68,7 +68,6 @@ def edit(request, site):
         })
     
     newContent = request.POST["newContent"]
-
     util.save_entry(site, newContent)
 
     return HttpResponseRedirect(reverse("site", kwargs={"site": site}))
