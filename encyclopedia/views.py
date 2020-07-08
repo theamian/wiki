@@ -13,8 +13,10 @@ def index(request):
     })
 
 def site(request, site):
-    if util.get_entry(site):  
+    if util.get_entry(site):
+        print(util.get_entry(site))  
         content = markdown2.markdown(util.get_entry(site))
+        print(content)
     else:
         content = None
     return render(request, "encyclopedia/site.html", {
@@ -34,10 +36,7 @@ def search(request):
         print(f"newList je {newList}")
         for entry in entryList:
             if query.lower() in entry.lower():
-                print(f"query je {query.lower()}")
-                print(f"entry je {entry.lower()}")
                 newList.append(entry)
-                print(f"newList je sad {newList}")
         
         return render(request, "encyclopedia/results.html", {
             "newList": newList
@@ -57,4 +56,19 @@ def create(request):
 
     util.save_entry(title, content)
 
-    return HttpResponseRedirect(reverse("site", kwargs={"site": title}))    
+    return HttpResponseRedirect(reverse("site", kwargs={"site": title}))
+
+def edit(request, site):
+    content = util.get_entry(site)
+
+    if request.method == "GET":
+        return render(request, "encyclopedia/edit.html", {
+            "site": site,
+            "content": content
+        })
+    
+    newContent = request.POST["newContent"]
+
+    util.save_entry(site, newContent)
+
+    return HttpResponseRedirect(reverse("site", kwargs={"site": site}))

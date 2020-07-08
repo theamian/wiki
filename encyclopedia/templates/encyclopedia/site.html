@@ -13,5 +13,6 @@
         <div>Requested page could not be found. Check the spelling and the capitalization.</div>
     {% else %}
         {{ content | safe }}
+        <div>Click <a href="{% url 'edit' site %}">here</a> to edit this page</div>
     {% endif %}        
 {% endblock %}
